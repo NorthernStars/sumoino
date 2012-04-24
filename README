@@ -1,4 +1,4 @@
-# this library can be used to control 2 servo motors and 2 distance sensors + 3 light sensors
+# this library can be used to control 2 servo motors and 2 distance + 3 light sensors
 # it is developed for small sumorobots, in the project you can also find the schematics for the arduino extensionboard
 
 1) copy sumolib into your arduino libraries folder
