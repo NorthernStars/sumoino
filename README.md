@@ -1,9 +1,16 @@
-# this library can be used to control 2 servo motors and 2 distance + 3 light sensors
-# in the project you can also find the schematics for the arduino extensionboard
+Sumorobot library for Arduino
+=============================
 
-1) copy sumolib into your arduino libraries folder
-2) restart arduino and press Sketch > Import Library... > Sumorobot
-3) write some code xD (also the examples "Drive", "Avoid", "Opponent" are available)
+DESCRIPTION:
+------------
+
+* this library can be used to control 2 servo motors and 2 distance + 3 light sensors
+* in the project you can also find the schematics for the arduino extensionboard
+
+1) copy Sumorobot into your arduino libraries folder
+2) restart Arduino and press Sketch > Import Library... > Sumorobot
+3) check out the documentation "Sumorobot2012_documentation.pdf"
+4) write some code xD (also the examples "Drive_EN", "Avoid_EN", "Opponent_EN" are available)
 
 # download the library to the tmp and copy the library to the installed arduino
 cd /var/tmp
