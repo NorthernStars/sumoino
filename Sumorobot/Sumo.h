@@ -141,10 +141,6 @@ int leftMotor(uint8_t, uint8_t);
 #define paremMootor(dir, speed_percentage) (rightMotor(dir, speed_percentage))
 #define vasakMootor(dir, speed_percentage) (leftMotor(dir, speed_percentage))
 
-/* for testing */
-#define test_vastane() test_opponent()
-#define test_joon() test_line()
-#define test_andur() test_sensor()
 
 /* end of estonian version */
 
