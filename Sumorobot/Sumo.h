@@ -29,44 +29,51 @@ extern "C" {
 
 /* configuration */
 /* movement */
-#define FORWARD 0
-#define BACKWARD 1
-#define MAX_SPEED 100 // the % of max speed
+#define SECOND 1000
+#define SEKUND 1000
+#define MAX_SPEED 100   // 100% of speed
+#define SLOW 10         // 10% of speed
+#define FORWARD 0       // forward direction
+#define BACKWARD 1      // backward direction
 #define MAX_FORWARD 180 // max forward speed
-#define MIDPOINT 94 // servo midpoint, break
-#define MAX_BACKWARD 0 // max backward speed
+#define MIDPOINT 94     // servo midpoint, brake
+#define MAX_BACKWARD 0  // max backward speed
 /* pins */
 #define RIGHT_WHEEL 6
 #define LEFT_WHEEL 5
 #define FRONT_RIGHT_SENSOR 0
 #define FRONT_LEFT_SENSOR 1
-#define BOTTOM_RIGHT_SENSOR 3
+#define BOTTOM_RIGHT_SENSOR 2
+#define BOTTOM_MIDDLE_SENSOR 3
 #define BOTTOM_LEFT_SENSOR 4
-#define BOTTOM_MIDDLE_SENSOR 5
 /* calibration */
-#define LIGHT_INTENSITY_RIGHT 800
-#define LIGHT_INTENSITY_LEFT 800
-#define LIGHT_INTENSITY_MIDDLE 800
-#define OPPONENT_DISTANCE_LEFT 90
-#define OPPONENT_DISTANCE_RIGHT 90
+#define LIGHT_INTENSITY 600
+#define OPPONENT_DISTANCE 200
+/* for further calibration */
+#define OPPONENT_DISTANCE_LEFT OPPONENT_DISTANCE
+#define OPPONENT_DISTANCE_RIGHT OPPONENT_DISTANCE
+#define LIGHT_INTENSITY_RIGHT LIGHT_INTENSITY
+#define LIGHT_INTENSITY_LEFT LIGHT_INTENSITY
+#define LIGHT_INTENSITY_MIDDLE LIGHT_INTENSITY
+
 
 /* motors */
-
 static Servo rightWheel;
 static Servo leftWheel;
 
 /* english version */
 
-/* movement */
+/* initialization */
 void start();
-int getSpeed(int, int);
+/* movement */
+int getSpeed(uint8_t, uint8_t, uint8_t);
 void stop();
 void forward();
 void backward();
 void right();
 void left();
-int rightMotor(int);
-int leftMotor(int);
+int rightMotor(uint8_t, uint8_t);
+int leftMotor(uint8_t, uint8_t);
 
 /* sensors */
 #define READ_OPPONENT(analog, distance) (analogRead(analog) > distance)
@@ -81,49 +88,31 @@ int leftMotor(int);
 #define BOTTOM_MIDDLE READ_BOTTOM(BOTTOM_MIDDLE_SENSOR, LIGHT_INTENSITY_MIDDLE)
 
 /* for testing */
-#define test() \
-{ \
-    if(BOTTOM_RIGHT) stop(); \
-    else if(BOTTOM_LEFT) stop(); \
-    else if(BOTTOM_MIDDLE) backward(); \
-    else if(OPPONENT_LEFT && OPPONENT_RIGHT) forward(); \
-    else if(OPPONENT_LEFT) left(); \
-    else if(OPPONENT_RIGHT) right(); \
-    else forward(); \
-}
 #define test_opponent() \
 { \
-    if(OPPONENT_LEFT && OPPONENT_RIGHT) forward(); \
-    else if(OPPONENT_LEFT) left(); \
-    else if(OPPONENT_RIGHT) right(); \
+    if (OPPONENT_FRONT) forward(); \
+    else if (OPPONENT_LEFT) left(); \
+    else if (OPPONENT_RIGHT) right(); \
     else stop(); \
 }
 #define test_line() \
 { \
-    if(BOTTOM_RIGHT) { \
-		rightMotor(getSpeed(BACKWARD, MAX_SPEED)); \
-		leftMotor(getSpeed(BACKWARD, MAX_SPEED)); \
-		delay(500); \
-    } \
-	else if(BOTTOM_LEFT) { \
-		rightMotor(getSpeed(FORWARD, MAX_SPEED)); \
-		leftMotor(getSpeed(FORWARD, MAX_SPEED)); \
-		delay(500); \
-    } \
-    else if(BOTTOM_MIDDLE) { backward(); delay(500); }  \
+    if (BOTTOM_RIGHT) { left(); delay(500); } \
+	else if (BOTTOM_LEFT) { right(); delay(500); } \
+    else if (BOTTOM_MIDDLE) { backward(); delay(500); }  \
     else forward(); \
 }
 #define test_sensor() \
 { \
-    Serial.print( "parem: " ); \
+    Serial.print( "right: " ); \
     Serial.print( analogRead(FRONT_RIGHT_SENSOR) ); \
-    Serial.print( " vasak: " ); \
+    Serial.print( " left: " ); \
     Serial.print( analogRead(FRONT_LEFT_SENSOR) ); \
-    Serial.print( " joon vasak: "); \
+    Serial.print( " line_left: "); \
     Serial.print( analogRead(BOTTOM_LEFT_SENSOR) ); \
-    Serial.print( " joon kesk: "); \
+    Serial.print( " line_middle: "); \
     Serial.print( analogRead(BOTTOM_MIDDLE_SENSOR) ); \
-    Serial.print( " joon parem: "); \
+    Serial.print( " line_right: "); \
     Serial.println( analogRead(BOTTOM_RIGHT_SENSOR) ); \
     delay(1000); \
 }
@@ -144,13 +133,13 @@ int leftMotor(int);
 
 /* movement */
 #define viivitus(time) (delay(time))
-#define stop() (stop())
+#define stopp() (stop())
 #define edasi() (forward())
 #define tagasi() (backward())
 #define paremale() (right())
 #define vasakule() (left())
-#define paremMootor(rSpeed) (rightMotor(rSpeed))
-#define vasakMootor(lSpeed) (leftMotor(lSpeed))
+#define paremMootor(dir, speed_percentage) (rightMotor(dir, speed_percentage))
+#define vasakMootor(dir, speed_percentage) (leftMotor(dir, speed_percentage))
 
 /* for testing */
 #define test_vastane() test_opponent()
