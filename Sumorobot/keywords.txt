@@ -1,0 +1,63 @@
+#######################################
+# Syntax Coloring Map Sumorobt
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+Sumo	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+# english version
+start	KEYWORD2
+stop	KEYWORD2
+forward	KEYWORD2
+right	KEYWORD2
+left	KEYWORD2
+backward	KEYWORD2
+rightMotor	KEYWORD2
+leftMotor	KEYWORD2
+testOpponent	KEYWORD2
+testLine	KEYWORD2
+testSensors	KEYWORD2
+
+# estonian version
+stopp	KEYWORD2
+edasi	KEYWORD2
+tagasi	KEYWORD2
+paremale	KEYWORD2
+vasakule	KEYWORD2
+paremMootor	KEYWORD2
+vasakMootor	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+# english version
+SLOW	LITERAL1
+FORWARD	LITERAL1
+BACKWARD	LITERAL1
+MAX_SPEED	LITERAL1
+OPPONENT_LEFT	LITERAL1
+OPPONENT_RIGHT	LITERAL1
+OPPONENT_FRONT	LITERAL1
+BOTTOM_LEFT	LITERAL1
+BOTTOM_RIGHT	LITERAL1
+BOTTOM_MIDDLE	LITERAL1
+
+# estonian version
+AEGLANE	LITERAL1
+EDASI	LITERAL1
+TAGASI	LITERAL1
+MAX_KIIRUS	LITERAL1
+VASTANE_VASAK	LITERAL1
+VASTANE_PAREM	LITERAL1
+VASTANE_EES	LITERAL1
+ALL_VASAK	LITERAL1
+ALL_PAREM	LITERAL1
+ALL_KESKEL	LITERAL1
