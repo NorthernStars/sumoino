@@ -88,21 +88,21 @@ int leftMotor(uint8_t, uint8_t);
 #define BOTTOM_MIDDLE READ_BOTTOM(BOTTOM_MIDDLE_SENSOR, LIGHT_INTENSITY_MIDDLE)
 
 /* for testing */
-#define test_opponent() \
+#define testOpponent() \
 { \
     if (OPPONENT_FRONT) forward(); \
     else if (OPPONENT_LEFT) left(); \
     else if (OPPONENT_RIGHT) right(); \
     else stop(); \
 }
-#define test_line() \
+#define testLine() \
 { \
     if (BOTTOM_RIGHT) { left(); delay(500); } \
 	else if (BOTTOM_LEFT) { right(); delay(500); } \
     else if (BOTTOM_MIDDLE) { backward(); delay(500); }  \
     else forward(); \
 }
-#define test_sensor() \
+#define testSensor() \
 { \
     Serial.print( "right: " ); \
     Serial.print( analogRead(FRONT_RIGHT_SENSOR) ); \
