@@ -7,4 +7,4 @@
 
 cd /var/tmp
 git clone http://github.com/silps/sumoino.git
-cp -R Sumorobot /usr/share/arduino/libraries
+cp -R sumoino/Sumorobot /usr/share/arduino/libraries
