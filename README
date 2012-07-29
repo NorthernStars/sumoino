@@ -1,27 +1,29 @@
-Sumorobot library for Arduino
-=============================
+DESCRIPTION
+===========
 
-DESCRIPTION:
-
+* this sumorobot platform for Arduino is developed for young programmers
 * this library can be used to control 2 servo motors and 2 distance + 3 light sensors
-* in the project you can also find the schematics for the arduino extensionboard
+* schematics folder contains the Arduino shield schematics
+* there is no instructions to build a body for the sumorobot, this has to be done individually
 
-INSTALLATION:
+
+INSTALLATION
+============
 
 Steps:
-1) copy Sumorobot into your arduino libraries folder
-2) restart Arduino and press Sketch > Import Library... > Sumorobot
-3) check out the documentation "Sumorobot2012_documentation.pdf"
-4) write some code xD (also the examples "Drive_EN", "Avoid_EN", "Opponent_EN" are available)
+1) copy Sumorobot into your arduino libraries folder and restart arduino
+2) check out the documentation https://github.com/silps/sumoino/raw/master/documentation/Sumorobot2012_student.pdf
+3) write some code xD (tip: see examples "Drive_EN", "Avoid_EN", "Opponent_EN")
 
 Commands:
-# download the library to the tmp and copy the library to the installed arduino
-cd /var/tmp
-git clone http://github.com/silps/sumoino.git
+# this will install latest arduino and the Sumorobot library
+sudo apt-get update && sudo apt-get install arduino
+cd /var/tmp && git clone http://github.com/silps/sumoino.git
 cp -R sumoino/Sumorobot /usr/share/arduino/libraries
 
-# if you don't have arduino 1.0 you need to do this additional step
-# this will rename the example file formats into the old arduino format
-for i in `find /usr/share/arduino/libraries/Sumorobot/examples -name *.ino`;do mv $i ${i%.*}.pde;done
 
-# after everything is done, open arduino and enjoy xD
+CREDITS ^-^
+===========
+
+* fellow students
+* Arduino developers
