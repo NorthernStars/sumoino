@@ -104,7 +104,7 @@ int leftMotor(uint8_t, uint8_t);
     else if (BOTTOM_MIDDLE) { backward(); delay(500); }  \
     else forward(); \
 }
-#define testSensor() \
+#define testSensors() \
 { \
     Serial.print( "right: " ); \
     Serial.print( analogRead(FRONT_RIGHT_SENSOR) ); \
