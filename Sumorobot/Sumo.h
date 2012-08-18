@@ -130,7 +130,7 @@ int leftMotor(uint8_t, uint8_t);
 #define VASTANE_EES OPPONENT_FRONT
 /* field */
 #define ALL_PAREM BOTTOM_RIGHT
-#define ALL_VASAK BOTTOL_LEFT
+#define ALL_VASAK BOTTOM_LEFT
 #define ALL_KESKMINE BOTTOM_MIDDLE
 
 /* movement */
