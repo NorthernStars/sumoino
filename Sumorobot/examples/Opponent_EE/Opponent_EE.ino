@@ -14,7 +14,7 @@ void setup()
 // proovime vastasele otsa liikuda, et ta ringilt lahkuma sundida 
 // VIHJE: proovi vastane leida, kui andurid teda hetkel olevas positsioonis ei suuda leida 
 //       (proovi: paremMootor(EDASI, AEGLANE) and vasakMootor(TAGASI, AEGLANE) keerlemiseks 
-//                AEGLANE asemel saab kasutada, MAX_KIIRUS ning 0% kuni 100%) 
+//                AEGLANE asemel saab kasutada, MAX_KIIRUS ning 0 kuni 100 protsenti) 
 void loop() 
 { 
   if ( VASTANE_EES ) edasi();           // kui vastane on otse ees, liigume edasi 
