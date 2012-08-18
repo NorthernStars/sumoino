@@ -14,7 +14,7 @@ void setup()
 // try to push out the opponent without attention to the sumoring 
 // HINT: try to search for the opponent, when he is not visible to the sensors 
 //       (example: use rightMotor(FORWARD, SLOW) and leftMotor(BACKWARD, SLOW) to spin 
-//                 instead of SLOW, MAX_SPEED or 0 to 100 can be used) 
+//                 instead of SLOW, MAX_SPEED or 0 to 100 percent can be used) 
 void loop() 
 { 
   if ( OPPONENT_FRONT ) forward();    // when opponent is in front of us, we go forward 
