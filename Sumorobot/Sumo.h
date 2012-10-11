@@ -36,7 +36,9 @@ extern "C" {
 #define MAX_SPEED 100   // 100% of speed
 #define SLOW 10         // 10% of speed
 #define FORWARD 0       // forward direction
+#define EDASI 0
 #define BACKWARD 1      // backward direction
+#define TAGASI 1
 #define MAX_FORWARD 180 // max forward speed
 #define MIDPOINT 94     // servo midpoint, brake
 #define MAX_BACKWARD 0  // max backward speed
