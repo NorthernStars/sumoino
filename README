@@ -1,27 +1,33 @@
 DESCRIPTION
 ===========
 
-* this sumorobot platform for Arduino is developed for young programmers
-* this library can be used to control 2 servo motors and 2 distance + 3 light sensors
-* schematics folder contains the Arduino shield schematics
-* there is no instructions to build a body for the sumorobot, this has to be done individually
+* this amarino plugin will allow to controll the sumorobot via bluetooth over a android phone
+* it reacts to loudness around the phone and motion of the phone
 
 
 INSTALLATION
 ============
 
 Steps:
-1) copy Sumorobot into your arduino libraries folder and restart arduino
-2) check out the documentation https://github.com/silps/sumoino/raw/master/documentation/Sumorobot2012_student.pdf
-3) write some code xD (tip: see examples "Drive_EN", "Avoid_EN", "Opponent_EN")
+1) download Android SDK
+2) add it to PATH
+3) init the project with Android and download Amarino library
+4) install Amarino library for Arduino
+5) install Amarino on the phone
+6) compile the Amarino plugin
+7) install the plugin for Amarino
 
 Commands:
-# this will install latest arduino and the Sumorobot library
-# make sure that you will get arduino 1.0
-sudo apt-get update && sudo apt-get install arduino && arduino
-cd /var/tmp && git clone http://github.com/silps/sumoino.git
-sudo cp -R sumoino/Sumorobot /usr/share/arduino/libraries
+make download_64 or make download_32
+make init_64 or make init_32
+make init_project
+sudo make init_arduino
+make install amarino
+make all
+make install
 
+Notes:
+Enable USB debugging on the Android device
 
 CREDITS ^-^
 ===========
