@@ -1,8 +1,9 @@
 DESCRIPTION
 ===========
 
-* this amarino plugin will allow to controll the sumorobot via bluetooth over a android phone
-* it reacts to loudness around the phone and motion of the phone
+* this project uses amarino library to connect Arduino with Android
+* the project contains Android (amarino plugin) and Arduino program
+* reacting to loudness and motion of the phone, the state of the robot are changed
 
 
 INSTALLATION
