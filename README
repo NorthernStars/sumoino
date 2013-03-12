@@ -4,7 +4,7 @@ DESCRIPTION
 * this sumorobot platform for Arduino is developed for young programmers
 * this library can be used to control 2 servo motors and 2 distance + 3 light sensors
 * schematics folder contains the Arduino shield schematics
-* there is no instructions to build a body for the sumorobot, this has to be done individually
+* there is no instructions to build a body for the sumorobot
 
 
 INSTALLATION
@@ -26,5 +26,6 @@ sudo cp -R sumoino/Sumorobot /usr/share/arduino/libraries
 CREDITS ^-^
 ===========
 
-* EIK Robotics Club members
+* EIK Robotics Club
 * Arduino developers
+* NothernStars Robotics Club
