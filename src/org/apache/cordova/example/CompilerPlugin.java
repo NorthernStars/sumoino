@@ -19,10 +19,9 @@ import org.apache.cordova.api.CallbackContext;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-public class ToastPlugin extends CordovaPlugin {
+public class CompilerPlugin extends CordovaPlugin {
 
-	private static final String TAG = "ToastPlugin";
-	private static final String LONG_TOAST_ACTION = "show_long";
+	private static final String TAG = "CompilerPlugin";
 	private static final int TOAST_MESSAGE_INDEX = 0;
 	public static Context context;
 
