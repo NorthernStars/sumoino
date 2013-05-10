@@ -18,28 +18,15 @@
 */
 package org.apache.cordova.example;
 
-import android.content.Context;
-import android.app.Activity;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
-import android.view.View;
-import android.widget.SeekBar;
-import android.widget.TextView;
-import android.widget.SeekBar.OnSeekBarChangeListener;
+import android.app.Activity;
 
 import at.abraxas.amarino.Amarino;
 
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
-
-import android.app.AlertDialog;
-
-public class Bluetooth {
+public class Bluetooth extends Activity {
 	
 	private static final String TAG = "Bluetooth";
 	
@@ -55,7 +42,7 @@ public class Bluetooth {
 
 	public void send(byte b) {
 		// send byte to Arduino
-		Amarino.sendDataToArduino(this, DEVICE_ADDRESS, b, 0);
+		Amarino.sendDataToArduino(this, DEVICE_ADDRESS, (char)b, 0);
 	}
 
 	public void disconnect() {

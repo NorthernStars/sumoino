@@ -43,7 +43,6 @@ public class cordovaExample extends DroidGap
         settings.setBuiltInZoomControls(true);
         settings.setSupportZoom(true);
 
-        ToastPlugin.context = this;
         Toast.makeText(this, "Starting app ...", Toast.LENGTH_SHORT).show();
     }
 }

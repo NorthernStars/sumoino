@@ -1,0 +1,7 @@
+# auto gen stuff #
+/bin
+/gen
+build.xml
+local.properties
+proguard-project.txt
+

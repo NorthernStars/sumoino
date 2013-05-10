@@ -32,7 +32,7 @@ public class CompilerPlugin extends CordovaPlugin {
 				String sdcard = Environment.getExternalStorageDirectory().toString();
 				//String[] shellInput = new String[]{"/system/bin/sh", "-c", "cd "+sdcard+" && /data/data/jackpal.androidterm/local/bin/make all"};
 				String[] shellInput = new String[]{"/system/bin/sh/", "-c", "echo 'yoyo'> /sdcard/yoyo.txt"};
-				Process sh = Runtime.getRuntime().exec(shellInput, Environment, new File("/sdcard/"));
+				Process sh = Runtime.getRuntime().exec(shellInput, null, new File("/sdcard/"));
 				//Process sh = Runtime.getRuntime().exec("/system/bin/sh -c cd "+sdcard+" && /data/data/jackpal.androidterm/local/bin/make all");
 		        sh.waitFor();
 				
