@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.DataOutputStream;
 import java.lang.Runtime;
 
 import android.content.Context;
@@ -27,27 +28,38 @@ public class CompilerPlugin extends CordovaPlugin {
 
 	@Override
 	public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) throws JSONException {
+		
 		if ( "compile".equals(action) ) {
 			try {
-				String sdcard = Environment.getExternalStorageDirectory().toString();
-				//String[] shellInput = new String[]{"/system/bin/sh", "-c", "cd "+sdcard+" && /data/data/jackpal.androidterm/local/bin/make all"};
-				String[] shellInput = new String[]{"/system/bin/sh/", "-c", "echo 'yoyo'> /sdcard/yoyo.txt"};
-				Process sh = Runtime.getRuntime().exec(shellInput, null, new File("/sdcard/"));
+				File sdcard = Environment.getExternalStorageDirectory();
+				String[] cmd = {"cd", "/sdcard/download/ && sh make.sh"};
+				//String end = "";
+				
+				String[] shellInput = new String[]{"/system/bin/sh", "-c", "cd "+sdcard+" && /data/data/jackpal.androidterm/local/bin/make all"};
+				//String[] shellInput = new String[]{"/system/bin/sh/", "-c", "echo 'yoyo'> /sdcard/Download/yoyo.txt"};
+				//Process sh = Runtime.getRuntime().exec("/data/data/jackpal.androidterm/local/bin/make all", null, sdcard);
 				//Process sh = Runtime.getRuntime().exec("/system/bin/sh -c cd "+sdcard+" && /data/data/jackpal.androidterm/local/bin/make all");
-		        sh.waitFor();
+		        
+				Process sh = Runtime.getRuntime().exec("sh make.sh", null, new File("/sdcard/sumorobot/"));
+				
+				//DataOutputStream os = new DataOutputStream(sh.getOutputStream());
+				//os.writeBytes("/sdcard/download/make.sh");
+				//os.flush();
 				
 				BufferedReader br = new BufferedReader(new InputStreamReader(sh.getInputStream()));
 		       	String line;
 		       	String end = "";
 
-		       	while (br.ready() == false) { /* intentional empty space here */ }
+		       	//while (br.ready() == false) {}
 		       	while ((line = br.readLine()) != null) {
-		         	end += line;
+		       		//if (line.contains("main"))
+		       			end += line + '\n';
+		       			Thread.sleep(10 * 1000);
 		       	}
+		       	end += "exit value:" + sh.exitValue();
 
-		       	sh.waitFor();
-
-				Toast.makeText(context, "Compile successful: "+end, Toast.LENGTH_LONG).show();
+		       	for (int i=0; i < 7; i++)
+					Toast.makeText(context, "Compile successful: "+end, Toast.LENGTH_LONG).show();
 			} catch (Exception e) {
 				Toast.makeText(context, "Compile failed: "+e.getMessage(), Toast.LENGTH_LONG).show();
 			}
