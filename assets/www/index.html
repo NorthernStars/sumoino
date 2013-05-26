@@ -7,29 +7,42 @@
 
   <title>Blockly Demo: Fixed Blockly</title>
   <script type="text/javascript" src="blockly-read-only/blockly_compressed.js"></script>
-  <script type="text/javascript" src="blockly-read-only/language/en/_messages.js"></script>
-  <script type="text/javascript" src="blockly-read-only/language/common/control.js"></script>
-  <script type="text/javascript" src="blockly-read-only/language/common/logic.js"></script>
-  <script type="text/javascript" src="blockly-read-only/language/common/math.js"></script>
-  <script type="text/javascript" src="blockly-read-only/language/common/text.js"></script>
+  <script type="text/javascript" src="blockly-read-only/en_compressed.js"></script>
+  <script type="text/javascript" src="blockly-read-only/javascript_compressed.js"></script>
   <script type="text/javascript" src="js/cordova-2.7.0.js"></script>
   <script type="text/javascript" src="js/index.js"></script>
+  <script type="text/javascript" src="js/spin.min.js"></script>
   <script type="text/javascript">
     app.initialize();
-    function onLoad() {
-      document.addEventListener("deviceready", onDeviceReady, true);
-    }
 
-    function exitFromApp() {
-      navigator.app.exitApp();
-    }
+    var opts = {
+      lines: 20, // The number of lines to draw
+      length: 15, // The length of each line
+      width: 15, // The line thickness
+      radius: 30, // The radius of the inner circle
+      corners: 1, // Corner roundness (0..1)
+      rotate: 0, // The rotation offset
+      direction: 1, // 1: clockwise, -1: counterclockwise
+      color: '#000', // #rgb or #rrggbb
+      speed: 1, // Rounds per second
+      trail: 60, // Afterglow percentage
+      shadow: false, // Whether to render a shadow
+      hwaccel: false, // Whether to use hardware acceleration
+      className: 'spinner', // The CSS class to assign to the spinner
+      zIndex: 2e9, // The z-index (defaults to 2000000000)
+      top: '50%', // Top position relative to parent in px
+      left: '50%' // Left position relative to parent in px
+    };
+    var spinner = new Spinner(opts);
   </script>
   <link rel="stylesheet" type="text/css" href="css/index.css" />
 </head>
 <body onload="onLoad();">
   <h1>Sumorobot</h1>
 
-  <div id="blocklyDiv" style="height: 80%; border: 1px solid #ccc;"></div>
+  <div id="loading"></div>
+
+  <div id="blocklyDiv" style="height: 65%;"></div>
 
   <xml id="toolbox" style="display: none">
     <block type="controls_arduino_main"></block>
@@ -40,8 +53,9 @@
     <block type="controls_arduino_line"></block>
   </xml>
 
-  <button name="compile" style="height: 7%; width: 100%" onclick="cordova.exec(function(winParam) { alert('success'); }, function(error) { alert('error'+error); }, 'CompilerPlugin', 'compile', ['argument']);">COMPILE</button>
-  <button name="exit" style="height: 7%; width: 100%" onclick="exitFromApp()">EXIT</button>
+  <button name="send" id="send" style="height: 10%; width: 100%;" onclick="sendCode();">SEND</button>
+  <button name="show" style="height: 10%; width: 100%;" onclick="showCode();">SHOW</button>
+  <button name="exit" style="height: 10%; width: 100%;" onclick="exitFromApp()">EXIT</button>
   <script>
     Blockly.inject(document.getElementById('blocklyDiv'),
         {path: 'blockly-read-only/', toolbox: document.getElementById('toolbox')});

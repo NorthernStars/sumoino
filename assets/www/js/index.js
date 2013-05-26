@@ -47,3 +47,43 @@ var app = {
         console.log('Received Event: ' + id);
     }
 };
+
+function onLoad() {
+    document.addEventListener("deviceready", onDeviceReady, true);
+}
+
+function exitFromApp() {
+    navigator.app.exitApp();
+}
+
+function showLoading(loading) {
+    document.getElementById('send').disabled = loading;
+    if (loading)
+        spinner.spin( document.getElementById('loading') );
+    else
+        spinner.stop();
+}
+
+function sendCode() {
+    showLoading(true);
+
+    cordova.exec(
+        // on success
+        function(winParam) { 
+            //alert('success');
+            showLoading(false);
+        },
+        // on error
+        function(error) { 
+            //alert('error: '+error);
+            showLoading(false);
+        },
+        // plugin, action, arguments
+        'CompilerPlugin', 'compile', ['argument']
+    );
+}
+
+function showCode() {
+    var code = Blockly.Generator.workspaceToCode('JavaScript');
+    alert(code);
+}

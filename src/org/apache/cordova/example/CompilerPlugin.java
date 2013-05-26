@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.io.DataOutputStream;
+import java.io.OutputStreamWriter;
 import java.lang.Runtime;
 
 import android.content.Context;
@@ -28,44 +28,49 @@ public class CompilerPlugin extends CordovaPlugin {
 
 	@Override
 	public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) throws JSONException {
-		
 		if ( "compile".equals(action) ) {
+			Process process = null;
 			try {
 				File sdcard = Environment.getExternalStorageDirectory();
-				String[] cmd = {"cd", "/sdcard/download/ && sh make.sh"};
-				//String end = "";
+				String[] commands = {"su", "-c", "sh make.sh"};
+				process = Runtime.getRuntime().exec("sh make.sh", null, new File("/sdcard/sumorobot/"));
 				
-				String[] shellInput = new String[]{"/system/bin/sh", "-c", "cd "+sdcard+" && /data/data/jackpal.androidterm/local/bin/make all"};
-				//String[] shellInput = new String[]{"/system/bin/sh/", "-c", "echo 'yoyo'> /sdcard/Download/yoyo.txt"};
-				//Process sh = Runtime.getRuntime().exec("/data/data/jackpal.androidterm/local/bin/make all", null, sdcard);
-				//Process sh = Runtime.getRuntime().exec("/system/bin/sh -c cd "+sdcard+" && /data/data/jackpal.androidterm/local/bin/make all");
-		        
-				Process sh = Runtime.getRuntime().exec("sh make.sh", null, new File("/sdcard/sumorobot/"));
-				
-				//DataOutputStream os = new DataOutputStream(sh.getOutputStream());
-				//os.writeBytes("/sdcard/download/make.sh");
-				//os.flush();
-				
-				BufferedReader br = new BufferedReader(new InputStreamReader(sh.getInputStream()));
-		       	String line;
-		       	String end = "";
+				BufferedReader stdInput = new BufferedReader(new
+                	InputStreamReader(process.getInputStream()));
+ 
+           		BufferedReader stdError = new BufferedReader(new
+                	InputStreamReader(process.getErrorStream()));
+		       	String line, output = "", errors = "";
 
-		       	//while (br.ready() == false) {}
-		       	while ((line = br.readLine()) != null) {
+		       	while ((line = stdInput.readLine()) != null) {
 		       		//if (line.contains("main"))
-		       			end += line + '\n';
-		       			Thread.sleep(10 * 1000);
+		       			output += line;
 		       	}
-		       	end += "exit value:" + sh.exitValue();
+		       	while ((line = stdError.readLine()) != null) {
+		       		//if (line.contains("main"))
+		       			errors += line;
+		       	}
+				
+				stdInput.close();
+		       	stdError.close();
+				process.getOutputStream().close();
+           		process.getInputStream().close();
+           		process.getErrorStream().close();
+           		process.waitFor();
 
-		       	for (int i=0; i < 7; i++)
-					Toast.makeText(context, "Compile successful: "+end, Toast.LENGTH_LONG).show();
+		       	output += "exit value:" + process.exitValue();
+		       	output += "exit code: " + process.waitFor();
+
+				Toast.makeText(context, "Compile output: "+output, Toast.LENGTH_LONG).show();
+				Toast.makeText(context, "Compile errors: "+errors, Toast.LENGTH_LONG).show();
 			} catch (Exception e) {
-				Toast.makeText(context, "Compile failed: "+e.getMessage(), Toast.LENGTH_LONG).show();
+				Toast.makeText(context, "Compiler not installed", Toast.LENGTH_LONG).show();
+			} finally {
+				try { process.destroy(); } catch (Exception e) {}
 			}
 		} else {
-		  		Toast.makeText(context, "Invalid action", Toast.LENGTH_SHORT).show();
-		  		return false;
+		  	Toast.makeText(context, "Invalid action", Toast.LENGTH_SHORT).show();
+		  	return false;
 		}
 
 		callbackContext.success("result");
