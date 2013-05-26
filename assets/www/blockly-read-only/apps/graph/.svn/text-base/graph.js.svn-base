@@ -31,7 +31,7 @@ if (typeof google == 'object') {
 }
 
 document.write(graphpage.start({}, null,
-    {MSG: MSG, frameSrc: frameSrc.join('&')}));
+    {MSG: MSG}));
 
 /**
  * Create a namespace for the application.
@@ -40,18 +40,32 @@ var Graph = {};
 
 /**
  * Initialize Blockly and the graph.  Called on page load.
- * @param {!Blockly} blockly Instance of Blockly from iframe.
  */
-Graph.init = function(blockly) {
-  window.Blockly = blockly;
+Graph.init = function() {
+  // document.dir fails in Mozilla, use document.body.parentNode.dir instead.
+  // https://bugzilla.mozilla.org/show_bug.cgi?id=151407
+  var rtl = document.body.parentNode.dir == 'rtl';
+  var toolbox = document.getElementById('toolbox');
+  Blockly.inject(document.getElementById('blockly'),
+      {path: '../../',
+       rtl: rtl,
+       toolbox: toolbox});
 
-  window.onbeforeunload = function() {
-    if (Blockly.mainWorkspace.getAllBlocks().length > 1 &&
-        window.location.hash.length <= 1) {
-      return MSG.unloadWarning;
+  window.addEventListener('beforeunload', function(e) {
+    if (Blockly.mainWorkspace.getAllBlocks().length > 2) {
+      e.returnValue = MSG.unloadWarning;  // Gecko.
+      return MSG.unloadWarning;  // Webkit.
     }
     return null;
+  });
+  var blocklyDiv = document.getElementById('blockly');
+  var onresize = function(e) {
+    blocklyDiv.style.width = (window.innerWidth - blocklyDiv.offsetLeft - 18) +
+        'px';
+    blocklyDiv.style.height = (window.innerHeight - 22) + 'px';
   };
+  window.addEventListener('resize', onresize);
+  onresize();
 
   if (!('BlocklyStorage' in window)) {
     document.getElementById('linkButton').className = 'disabled';
@@ -62,7 +76,11 @@ Graph.init = function(blockly) {
   } else { // Load the editor with a starting block.
     var xml = Blockly.Xml.textToDom(
         '<xml>' +
-        '  <block type="graph_set_y" x="85" y="100"></block>' +
+        '  <block type="graph_set_y" deletable="false" x="85" y="100">' +
+        '    <value name="VALUE">' +
+        '      <block type="graph_get_x"></block>' +
+        '    </value>' +
+        '  </block>' +
         '</xml>');
     Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, xml);
   }
@@ -70,6 +88,8 @@ Graph.init = function(blockly) {
   Blockly.mainWorkspace.getCanvas().addEventListener('blocklyWorkspaceChange',
       window.parent.Graph.drawVisualization, false);
 };
+
+window.addEventListener('load', Graph.init);
 
 /**
  * Visualize the graph of y = f(x) using Google Chart Tools.

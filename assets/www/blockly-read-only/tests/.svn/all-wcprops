@@ -1,7 +1,13 @@
 K 25
 svn:wc:ra_dav:version-url
 V 29
-/svn/!svn/ver/699/trunk/tests
+/svn/!svn/ver/750/trunk/tests
+END
+blockly_test.js
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/750/trunk/tests/blockly_test.js
 END
 names_test.js
 K 25
@@ -25,11 +31,5 @@ playground.html
 K 25
 svn:wc:ra_dav:version-url
 V 45
-/svn/!svn/ver/677/trunk/tests/playground.html
-END
-blockly_test.js
-K 25
-svn:wc:ra_dav:version-url
-V 45
-/svn/!svn/ver/523/trunk/tests/blockly_test.js
+/svn/!svn/ver/749/trunk/tests/playground.html
 END

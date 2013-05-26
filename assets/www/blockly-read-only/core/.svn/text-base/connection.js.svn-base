@@ -270,11 +270,11 @@ Blockly.Connection.prototype.bumpAwayFrom_ = function(staticConnection) {
   // Move the root block.
   var rootBlock = this.sourceBlock_.getRootBlock();
   var reverse = false;
-  if (!rootBlock.editable) {
+  if (!rootBlock.movable) {
     // Can't bump an uneditable block away.
     // Check to see if the other block is editable.
     rootBlock = staticConnection.sourceBlock_.getRootBlock();
-    if (!rootBlock.editable) {
+    if (!rootBlock.movable) {
       return;
     }
     // Swap the connections and move the 'static' connection instead.
@@ -612,9 +612,15 @@ Blockly.Connection.prototype.hideAll = function() {
           this.dbList_[connection.type].removeConnection_(connection);
         }
       }
-      // Hide all comments of all children.
+      // Close all bubbles of all children.
+      if (block.mutator) {
+        block.mutator.setVisible(false);
+      }
       if (block.comment) {
         block.comment.setVisible(false);
+      }
+      if (block.warning) {
+        block.warning.setVisible(false);
       }
     }
   }

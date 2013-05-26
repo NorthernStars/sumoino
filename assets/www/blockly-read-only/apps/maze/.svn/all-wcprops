@@ -1,31 +1,115 @@
 K 25
 svn:wc:ra_dav:version-url
 V 33
-/svn/!svn/ver/722/trunk/apps/maze
+/svn/!svn/ver/937/trunk/apps/maze
 END
-ru.html
+tiles.png
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/937/trunk/apps/maze/tiles.png
+END
+el.html
 K 25
 svn:wc:ra_dav:version-url
 V 41
-/svn/!svn/ver/714/trunk/apps/maze/ru.html
+/svn/!svn/ver/936/trunk/apps/maze/el.html
 END
-pegman.png
+marker.png
 K 25
 svn:wc:ra_dav:version-url
 V 44
-/svn/!svn/ver/550/trunk/apps/maze/pegman.png
+/svn/!svn/ver/550/trunk/apps/maze/marker.png
+END
+en.html
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/936/trunk/apps/maze/en.html
+END
+fr.html
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/936/trunk/apps/maze/fr.html
+END
+index.html
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/!svn/ver/885/trunk/apps/maze/index.html
+END
+nl.html
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/936/trunk/apps/maze/nl.html
+END
+th.html
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/936/trunk/apps/maze/th.html
+END
+pl.html
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/936/trunk/apps/maze/pl.html
+END
+it.html
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/936/trunk/apps/maze/it.html
+END
+lv.html
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/936/trunk/apps/maze/lv.html
+END
+ca.html
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/936/trunk/apps/maze/ca.html
+END
+pt.html
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/936/trunk/apps/maze/pt.html
+END
+vn.html
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/936/trunk/apps/maze/vn.html
+END
+da.html
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/936/trunk/apps/maze/da.html
+END
+sr.html
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/936/trunk/apps/maze/sr.html
+END
+tr.html
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/936/trunk/apps/maze/tr.html
 END
 de.html
 K 25
 svn:wc:ra_dav:version-url
 V 41
-/svn/!svn/ver/714/trunk/apps/maze/de.html
-END
-frame.html
-K 25
-svn:wc:ra_dav:version-url
-V 44
-/svn/!svn/ver/722/trunk/apps/maze/frame.html
+/svn/!svn/ver/936/trunk/apps/maze/de.html
 END
 icons.png
 K 25
@@ -37,89 +121,95 @@ title.png
 K 25
 svn:wc:ra_dav:version-url
 V 43
-/svn/!svn/ver/709/trunk/apps/maze/title.png
-END
-marker.png
-K 25
-svn:wc:ra_dav:version-url
-V 44
-/svn/!svn/ver/550/trunk/apps/maze/marker.png
-END
-pegman_bubble.png
-K 25
-svn:wc:ra_dav:version-url
-V 51
-/svn/!svn/ver/661/trunk/apps/maze/pegman_bubble.png
-END
-en.html
-K 25
-svn:wc:ra_dav:version-url
-V 41
-/svn/!svn/ver/714/trunk/apps/maze/en.html
-END
-frame.js
-K 25
-svn:wc:ra_dav:version-url
-V 42
-/svn/!svn/ver/716/trunk/apps/maze/frame.js
+/svn/!svn/ver/853/trunk/apps/maze/title.png
 END
 maze.js
 K 25
 svn:wc:ra_dav:version-url
 V 41
-/svn/!svn/ver/722/trunk/apps/maze/maze.js
+/svn/!svn/ver/937/trunk/apps/maze/maze.js
+END
+cs.html
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/936/trunk/apps/maze/cs.html
 END
 es.html
 K 25
 svn:wc:ra_dav:version-url
 V 41
-/svn/!svn/ver/720/trunk/apps/maze/es.html
+/svn/!svn/ver/936/trunk/apps/maze/es.html
 END
-index.html
-K 25
-svn:wc:ra_dav:version-url
-V 44
-/svn/!svn/ver/720/trunk/apps/maze/index.html
-END
-th.html
+eu.html
 K 25
 svn:wc:ra_dav:version-url
 V 41
-/svn/!svn/ver/713/trunk/apps/maze/th.html
+/svn/!svn/ver/936/trunk/apps/maze/eu.html
+END
+hu.html
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/936/trunk/apps/maze/hu.html
+END
+loading.gif
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/728/trunk/apps/maze/loading.gif
 END
 template.soy
 K 25
 svn:wc:ra_dav:version-url
 V 46
-/svn/!svn/ver/722/trunk/apps/maze/template.soy
+/svn/!svn/ver/853/trunk/apps/maze/template.soy
 END
 template.js
 K 25
 svn:wc:ra_dav:version-url
 V 45
-/svn/!svn/ver/722/trunk/apps/maze/template.js
-END
-ca.html
-K 25
-svn:wc:ra_dav:version-url
-V 41
-/svn/!svn/ver/720/trunk/apps/maze/ca.html
-END
-vn.html
-K 25
-svn:wc:ra_dav:version-url
-V 41
-/svn/!svn/ver/712/trunk/apps/maze/vn.html
-END
-sr.html
-K 25
-svn:wc:ra_dav:version-url
-V 41
-/svn/!svn/ver/714/trunk/apps/maze/sr.html
+/svn/!svn/ver/853/trunk/apps/maze/template.js
 END
 style.css
 K 25
 svn:wc:ra_dav:version-url
 V 43
-/svn/!svn/ver/714/trunk/apps/maze/style.css
+/svn/!svn/ver/853/trunk/apps/maze/style.css
+END
+blocks.js
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/936/trunk/apps/maze/blocks.js
+END
+win.wav
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/736/trunk/apps/maze/win.wav
+END
+ru.html
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/936/trunk/apps/maze/ru.html
+END
+whack.wav
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/736/trunk/apps/maze/whack.wav
+END
+pegman.png
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/!svn/ver/550/trunk/apps/maze/pegman.png
+END
+sw.html
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/936/trunk/apps/maze/sw.html
 END

@@ -23,9 +23,7 @@
  */
 'use strict';
 
-goog.provide('Blockly.Python.control');
-
-goog.require('Blockly.Python');
+Blockly.Python.control = {};
 
 Blockly.Python.controls_if = function() {
   // If/elseif/else condition.
@@ -166,10 +164,10 @@ Blockly.Python.controls_flow_statements = function() {
   throw 'Unknown flow statement.';
 };
 
-Blockly.Python.controls_arduino = function() {
+Blockly.Python.controls_arduino_main = function() {
   var statements_setup = Blockly.Python.statementToCode(this, 'setup');
   var statements_loop = Blockly.Python.statementToCode(this, 'loop');
   // TODO: Assemble Python into code variable.
-  var code = '...'
+  var code = 'void setup() {} void loop() {}';
   return code;
 };

@@ -187,7 +187,7 @@ Blockly.DRAG_RADIUS = 5;
  * Maximum misalignment between connections for them to snap together.
  * @const
  */
-Blockly.SNAP_RADIUS = 12;
+Blockly.SNAP_RADIUS = 15;
 
 /**
  * Delay in ms between trigger and bumping unconnected block out of alignment.
@@ -385,6 +385,39 @@ Blockly.copy_ = function(block) {
 Blockly.showContextMenu_ = function(x, y) {
   var options = [];
 
+  if (Blockly.collapse) {
+    var hasCollapsedBlocks = false;
+    var hasExpandedBlocks = false;
+    var topBlocks = Blockly.mainWorkspace.getTopBlocks(false);
+    for (var i = 0; i < topBlocks.length; i++) {
+      if (topBlocks[i].collapsed) {
+        hasCollapsedBlocks = true;
+      } else {
+        hasExpandedBlocks = true;
+      }
+    }
+
+    // Option to collapse top blocks.
+    var collapseOption = {enabled: hasExpandedBlocks};
+    collapseOption.text = Blockly.MSG_COLLAPSE_ALL;
+    collapseOption.callback = function() {
+      for (var i = 0; i < topBlocks.length; i++) {
+        topBlocks[i].setCollapsed(true);
+      }
+    };
+    options.push(collapseOption);
+
+    // Option to expand top blocks.
+    var expandOption = {enabled: hasCollapsedBlocks};
+    expandOption.text = Blockly.MSG_EXPAND_ALL;
+    expandOption.callback = function() {
+      for (var i = 0; i < topBlocks.length; i++) {
+        topBlocks[i].setCollapsed(false);
+      }
+    };
+    options.push(expandOption);
+  }
+
   // Option to get help.
   var helpOption = {enabled: false};
   helpOption.text = Blockly.MSG_HELP;
@@ -450,17 +483,17 @@ Blockly.isTargetInput_ = function(e) {
 
 /**
  * Load an audio file.  Cache it, ready for instantaneous playing.
+ * @param {string} filename Path and filename from Blockly's root.
  * @param {string} name Name of sound.
  * @private
  */
-Blockly.loadAudio_ = function(name) {
+Blockly.loadAudio_ = function(filename, name) {
   if (!window.Audio) {
     // No browser support for Audio.
     return;
   }
-  var sound = new window.Audio(Blockly.pathToBlockly +
-                               'media/' + name + '.wav');
-  // To force the browser to load the sound, play it, but at zero volume.
+  var sound = new window.Audio(Blockly.pathToBlockly + filename);
+  // To force the browser to load the sound, play it, but at nearly zero volume.
   if (sound && sound.play) {
     sound.play();
     sound.volume = 0.01;
@@ -477,8 +510,9 @@ Blockly.loadAudio_ = function(name) {
 Blockly.playAudio = function(name, opt_volume) {
   var sound = Blockly.SOUNDS_[name];
   if (sound) {
-    sound.volume = (opt_volume === undefined ? 1 : opt_volume);
-    sound.play();
+    var mySound = sound.cloneNode();
+    mySound.volume = (opt_volume === undefined ? 1 : opt_volume);
+    mySound.play();
   }
 };
 

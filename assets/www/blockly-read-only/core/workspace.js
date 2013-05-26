@@ -34,14 +34,13 @@ goog.require('Blockly.Xml');
 
 /**
  * Class for a workspace.
- * @param {boolean} editable Is this workspace freely interactive?
  * @constructor
  */
-Blockly.Workspace = function(editable) {
+Blockly.Workspace = function() {
   /** @type {boolean} */
-  this.editable = editable;
+  this.isFlyout = false;
   /**
-   * @type {!Array.<Blockly.Block>}
+   * @type {!Array.<!Blockly.Block>}
    * @private
    */
   this.topBlocks_ = [];
@@ -131,7 +130,7 @@ Blockly.Workspace.prototype.dispose = function() {
  * @param {!Function} getMetrics A function that returns workspace's metrics.
  */
 Blockly.Workspace.prototype.addTrashcan = function(getMetrics) {
-  if (Blockly.Trashcan && this.editable) {
+  if (Blockly.Trashcan && Blockly.editable) {
     this.trashcan = new Blockly.Trashcan(getMetrics);
     var svgTrashcan = this.trashcan.createDom();
     this.svgGroup_.insertBefore(svgTrashcan, this.svgBlockCanvas_);
@@ -329,7 +328,7 @@ Blockly.Workspace.prototype.paste = function(xmlBlock) {
     if (Blockly.RTL) {
       blockX = -blockX;
     }
-    // Offset block until not clobering another block.
+    // Offset block until not clobbering another block.
     do {
       var collide = false;
       var allBlocks = this.getAllBlocks();

@@ -27,6 +27,22 @@
 Blockly.Apps = {};
 
 /**
+ * Load the specified language file(s).
+ * @param {!Array<string>} languageSrc Array of language files.
+ */
+Blockly.Apps.loadLanguageScripts = function(languageSrc) {
+  for (var x = 0; x < languageSrc.length; x++) {
+    var file = languageSrc[x];
+    if (file.match(/^(\w+\/)*\w+\.js$/)) {
+      document.writeln('<script type="text/javascript" ' +
+          'src="../../' + file + '"><' + '/script>');
+    } else {
+      console.error('Illegal language file: ' + file);
+    }
+  }
+};
+
+/**
  * Updates the document's 'capacity' element's innerHTML with a message
  * indicating how many more blocks are permitted.  The capacity
  * is retrieved from Blockly.mainWorkspace.remainingCapacity().
@@ -35,29 +51,31 @@ Blockly.Apps = {};
  */
 Blockly.Apps.updateCapacity = function(MSG) {
   var cap = Blockly.mainWorkspace.remainingCapacity();
-  var p = parent.document.getElementById('capacity');
+  var p = document.getElementById('capacity');
   if (cap == Infinity) {
-    p.innerHTML = '';
-  } else if (cap == 0) {
-    p.innerHTML = MSG.capacity0;
-  } else if (cap == 1) {
-    p.innerHTML = MSG.capacity1;
+    p.style.display = 'none';
   } else {
-    cap = Number(cap);
-    p.innerHTML = MSG.capacity2.replace('%1', cap);
+    p.style.display = 'inline';
+    if (cap == 0) {
+      p.innerHTML = MSG.capacity0;
+    } else if (cap == 1) {
+      p.innerHTML = MSG.capacity1;
+    } else {
+      cap = Number(cap);
+      p.innerHTML = MSG.capacity2.replace('%1', cap);
+    }
   }
 };
 
 /**
  * Congratulates the user for completing the level and offers to
  * direct them to the next level, if available.
- * @param {!Object} window
  * @param {number} level The current level.
  * @param {number} maxLevel The maxmium available level.
  * @param {!Object} MSG An object with appropriate text properties for
  *     MSG.nextLevel and MSG.finalLevel.
  */
-Blockly.Apps.congratulations = function(window, level, maxLevel, MSG) {
+Blockly.Apps.congratulations = function(level, maxLevel, MSG) {
   if (level < maxLevel) {
     var proceed = window.confirm(MSG.nextLevel.replace('%1', level + 1));
     if (proceed) {
@@ -66,7 +84,37 @@ Blockly.Apps.congratulations = function(window, level, maxLevel, MSG) {
           '?level=' + (level + 1);
     }
   } else {
-    alert(MSG.finalLevel);
+    window.alert(MSG.finalLevel);
+  }
+};
+
+/**
+ * Highlight the block (or clear highlighting).
+ * @param {?string} id ID of block that triggered this action.
+ */
+Blockly.Apps.highlight = function(id) {
+  if (id) {
+    var m = id.match(/^block_id_(\d+)$/)
+    if (m) {
+      id = m[1];
+    }
+  }
+  Blockly.mainWorkspace.highlightBlock(id);
+};
+
+/**
+ * If the user has executed too many actions, we're probably in an infinite
+ * loop.  Sadly I wasn't able to solve the Halting Problem.
+ * @param {?string} opt_id ID of loop block to highlight if timeout is reached.
+ * @throws {false} Throws an error to terminate the user's program.
+ */
+Blockly.Apps.checkTimeout = function(opt_id) {
+  if (opt_id) {
+    Blockly.Apps.log.push([null, opt_id]);
+  }
+  if (Blockly.Apps.ticks-- < 0) {
+    // Highlight an infinite loop on death.
+    throw false;
   }
 };
 
@@ -77,7 +125,7 @@ Blockly.Apps.congratulations = function(window, level, maxLevel, MSG) {
  */
 Blockly.Apps.stripCode = function(code) {
   // Strip out serial numbers.
-  code = code.replace(/'\d+'/g, '');
+  code = code.replace(/(,\s*)?'block_id_\d+'\)/g, ')');
   // Remove timeouts.
   var regex = new RegExp(Blockly.JavaScript.INFINITE_LOOP_TRAP
       .replace('(%1)', '\\(\\)'), 'g');
@@ -90,5 +138,5 @@ Blockly.Apps.stripCode = function(code) {
 Blockly.Apps.showCode = function() {
   var code = Blockly.Generator.workspaceToCode('JavaScript');
   code = Blockly.Apps.stripCode(code);
-  alert(code);
+  window.alert(code);
 };

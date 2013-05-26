@@ -73,14 +73,17 @@ button.disabled {
   text-align: center;
   padding-top: 1em;
 }
-iframe {
-  height: 100%;
-  width: 100%;
-  border: 1px solid #ccc;
+#blockly {
+  position: fixed;
 }
 #display {
   border: 1px solid #ccc;
 }
+#downloadImageLink {
+  display: none;
+}
+
+/* Slider. */
 .sliderTrack {
   stroke: #aaa;
   stroke-width: 6px;
@@ -102,6 +105,12 @@ iframe {
   width: 21px;
   background-image: url(icons.png);
   background-position: -42px 0px;
+}
+.img {
+  height: 21px;
+  width: 21px;
+  background-image: url(icons.png);
+  background-position: -84px 0px;
 }
 .link {
   height: 21px;

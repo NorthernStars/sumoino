@@ -23,17 +23,13 @@
  */
 'use strict';
 
-goog.provide('Blockly.Language.control');
-
-goog.require('Blockly.Language');
-
 Blockly.Language.controls_if = {
   // If/elseif/else condition.
   helpUrl: Blockly.LANG_CONTROLS_IF_HELPURL,
   init: function() {
     this.setColour(120);
     this.appendValueInput('IF0')
-        .setCheck(Boolean)
+        .setCheck('Boolean')
         .appendTitle(Blockly.LANG_CONTROLS_IF_MSG_IF);
     this.appendStatementInput('DO0')
         .appendTitle(Blockly.LANG_CONTROLS_IF_MSG_THEN);
@@ -76,7 +72,7 @@ Blockly.Language.controls_if = {
     this.elseCount_ = window.parseInt(xmlElement.getAttribute('else'), 10);
     for (var x = 1; x <= this.elseifCount_; x++) {
       this.appendValueInput('IF' + x)
-          .setCheck(Boolean)
+          .setCheck('Boolean')
           .appendTitle(Blockly.LANG_CONTROLS_IF_MSG_ELSEIF);
       this.appendStatementInput('DO' + x)
           .appendTitle(Blockly.LANG_CONTROLS_IF_MSG_THEN);
@@ -122,7 +118,7 @@ Blockly.Language.controls_if = {
         case 'controls_if_elseif':
           this.elseifCount_++;
           var ifInput = this.appendValueInput('IF' + this.elseifCount_)
-              .setCheck(Boolean)
+              .setCheck('Boolean')
               .appendTitle(Blockly.LANG_CONTROLS_IF_MSG_ELSEIF);
           var doInput = this.appendStatementInput('DO' + this.elseifCount_);
           doInput.appendTitle(Blockly.LANG_CONTROLS_IF_MSG_THEN);
@@ -240,8 +236,7 @@ Blockly.Language.controls_whileUntil = {
   init: function() {
     this.setColour(120);
     this.appendValueInput('BOOL')
-        .setCheck(Boolean)
-        .appendTitle(Blockly.LANG_CONTROLS_WHILEUNTIL_TITLE_REPEAT)
+        .setCheck('Boolean')
         .appendTitle(new Blockly.FieldDropdown(this.OPERATORS), 'MODE');
     this.appendStatementInput('DO')
         .appendTitle(Blockly.LANG_CONTROLS_WHILEUNTIL_INPUT_DO);
@@ -274,13 +269,17 @@ Blockly.Language.controls_for = {
         .appendTitle(Blockly.LANG_CONTROLS_FOR_INPUT_WITH)
         .appendTitle(new Blockly.FieldVariable(null), 'VAR');
     this.appendValueInput('FROM')
-        .setCheck(Number)
+        .setCheck('Number')
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendTitle(Blockly.LANG_CONTROLS_FOR_INPUT_FROM);
     this.appendValueInput('TO')
-        .setCheck(Number)
+        .setCheck('Number')
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendTitle(Blockly.LANG_CONTROLS_FOR_INPUT_TO);
+    if (Blockly.LANG_CONTROLS_FOR_TAIL) {
+      this.appendDummyInput()
+          .appendTitle(Blockly.LANG_CONTROLS_FOR_TAIL);
+    }
     this.appendStatementInput('DO')
         .appendTitle(Blockly.LANG_CONTROLS_FOR_INPUT_DO);
     this.setPreviousStatement(true);
@@ -320,10 +319,15 @@ Blockly.Language.controls_forEach = {
   init: function() {
     this.setColour(120);
     this.appendValueInput('LIST')
-        .setCheck(Array)
+        .setCheck('Array')
         .appendTitle(Blockly.LANG_CONTROLS_FOREACH_INPUT_ITEM)
         .appendTitle(new Blockly.FieldVariable(null), 'VAR')
         .appendTitle(Blockly.LANG_CONTROLS_FOREACH_INPUT_INLIST);
+    if (Blockly.LANG_CONTROLS_FOREACH_INPUT_INLIST_TAIL) {
+      this.appendDummyInput()
+          .appendTitle(Blockly.LANG_CONTROLS_FOREACH_INPUT_INLIST_TAIL);
+      this.setInputsInline(true);
+    }
     this.appendStatementInput('DO')
         .appendTitle(Blockly.LANG_CONTROLS_FOREACH_INPUT_DO);
     this.setPreviousStatement(true);
@@ -351,10 +355,8 @@ Blockly.Language.controls_flow_statements = {
   helpUrl: Blockly.LANG_CONTROLS_FLOW_STATEMENTS_HELPURL,
   init: function() {
     this.setColour(120);
-    var dropdown = new Blockly.FieldDropdown(this.OPERATORS);
     this.appendDummyInput()
-        .appendTitle(dropdown, 'FLOW')
-        .appendTitle(Blockly.LANG_CONTROLS_FLOW_STATEMENTS_INPUT_OFLOOP);
+        .appendTitle(new Blockly.FieldDropdown(this.OPERATORS), 'FLOW');
     this.setPreviousStatement(true);
     // Assign 'this' to a variable for use in the tooltip closure below.
     var thisBlock = this;

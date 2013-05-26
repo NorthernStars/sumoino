@@ -13,9 +13,7 @@ a:hover {
 .tab {
   padding: 4px 10px 1px;
   text-decoration: none;
-}
-.levelLine {
-  border-bottom: solid 1px #ddd;
+  color: #000;
 }
 #selected {
   font-weight: bold;
@@ -23,28 +21,49 @@ a:hover {
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
-#hint,
+#hintBubble {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  border-radius: 15px;
+  background-color: rgba(64,64,64,0.7);
+  width: 380px;
+}
+#hint {
+  color: #fff;
+  padding: 5px 1em;
+  font-size: large;
+}
+#capacityBubble {
+  position: absolute;
+  margin-top: -0.5em;
+  left: 10px;
+  top: 425px;
+  width: 380px;
+}
 #capacity {
-  font-style: italic;
+  display: none;
+  color: #fff;
+  padding: 5px 1em;
+  border-radius: 15px;
+  background-color: rgba(64,64,64,0.7);
+  font-size: large;
+}
+html[dir=rtl] #capacity {
+  float: left;
 }
 #capacityNumber {
   font-weight: bold;
 }
-#bubble {
-  width: 385px;
-  padding: 7px;
-  border: 1px solid #CCB;
-  border-radius: 15px;
-  background-color: #ff7;
-}
-#pegman_bubble {
-  position: relative;
-  top: -1px;
-  margin-left: 20px;
-  margin-right: 20px;
-}
-html[dir=rtl] #pegman_bubble {
-  transform: scaleX(-1);
+
+/* 'Look' icon */
+#look>path {
+  display: none;
+  fill: none;
+  stroke: #000;
+  stroke-width: 10;
+  stroke-linecap: round;
+  stroke-opacity: 0.7;
 }
 
 /* Buttons */
@@ -76,15 +95,12 @@ button>img {
 button.disabled {
   visibility: hidden;
 }
-#buttonDiv, #toolbarDiv {
+#toolbarDiv {
   text-align: center;
   padding-top: 1em;
-  width: 50%;
 }
-iframe {
-  height: 100%;
-  width: 100%;
-  border: 1px solid #ccc;
+#blockly {
+  position: fixed;
 }
 
 /* Sprited icons. */

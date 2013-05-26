@@ -1,7 +1,7 @@
 K 25
 svn:wc:ra_dav:version-url
 V 40
-/svn/!svn/ver/699/trunk/tests/generators
+/svn/!svn/ver/749/trunk/tests/generators
 END
 unittest_python.js
 K 25
@@ -37,7 +37,7 @@ colour.xml
 K 25
 svn:wc:ra_dav:version-url
 V 51
-/svn/!svn/ver/699/trunk/tests/generators/colour.xml
+/svn/!svn/ver/749/trunk/tests/generators/colour.xml
 END
 text.xml
 K 25
@@ -67,7 +67,7 @@ index.html
 K 25
 svn:wc:ra_dav:version-url
 V 51
-/svn/!svn/ver/682/trunk/tests/generators/index.html
+/svn/!svn/ver/749/trunk/tests/generators/index.html
 END
 procedures.xml
 K 25

@@ -61,16 +61,16 @@ Blockly.Block = function(workspace, prototypeName) {
   this.rendered = false;
   this.collapsed = false;
   this.disabled = false;
-  this.editable = workspace.editable;
-  this.deletable = workspace.editable;
+  this.movable = Blockly.editable;
+  this.deletable = Blockly.editable;
   this.tooltip = '';
   this.contextMenu = true;
 
   this.parentBlock_ = null;
   this.childBlocks_ = [];
 
-  this.isInFlyout = false;
   this.workspace = workspace;
+  this.isInFlyout = workspace.isFlyout;
 
   workspace.addTopBlock(this);
 
@@ -88,7 +88,7 @@ Blockly.Block = function(workspace, prototypeName) {
     this.init();
   }
   // Bind an onchange function, if it exists.
-  if (this.editable && goog.isFunction(this.onchange)) {
+  if (goog.isFunction(this.onchange)) {
     Blockly.bindEvent_(workspace.getCanvas(), 'blocklyWorkspaceChange', this,
                        this.onchange);
   }
@@ -387,8 +387,8 @@ Blockly.Block.prototype.onMouseDown_ = function(e) {
     if (Blockly.ContextMenu) {
       this.showContextMenu_(e.clientX, e.clientY);
     }
-  } else if (!this.editable) {
-    // Allow uneditable blocks to be selected and context menued, but not
+  } else if (!this.movable) {
+    // Allow unmovable blocks to be selected and context menued, but not
     // dragged.  Let this event bubble up to document, so the workspace may be
     // dragged instead.
     return;
@@ -571,21 +571,23 @@ Blockly.Block.prototype.showContextMenu_ = function(x, y) {
       }
     }
 
-    // Option to collapse/expand block.
-    if (this.collapsed) {
-      var expandOption = {enabled: true};
-      expandOption.text = Blockly.MSG_EXPAND_BLOCK;
-      expandOption.callback = function() {
-        block.setCollapsed(false);
-      };
-      options.push(expandOption);
-    } else {
-      var collapseOption = {enabled: true};
-      collapseOption.text = Blockly.MSG_COLLAPSE_BLOCK;
-      collapseOption.callback = function() {
-        block.setCollapsed(true);
-      };
-      options.push(collapseOption);
+    if (Blockly.collapse) {
+      // Option to collapse/expand block.
+      if (this.collapsed) {
+        var expandOption = {enabled: true};
+        expandOption.text = Blockly.MSG_EXPAND_BLOCK;
+        expandOption.callback = function() {
+          block.setCollapsed(false);
+        };
+        options.push(expandOption);
+      } else {
+        var collapseOption = {enabled: true};
+        collapseOption.text = Blockly.MSG_COLLAPSE_BLOCK;
+        collapseOption.callback = function() {
+          block.setCollapsed(true);
+        };
+        options.push(collapseOption);
+      }
     }
 
     // Option to disable/enable block.
@@ -1050,8 +1052,8 @@ Blockly.Block.prototype.setTooltip = function(newTip) {
 /**
  * Set whether this block can chain onto the bottom of another block.
  * @param {boolean} newBoolean True if there can be a previous statement.
- * @param {Object} opt_check Statement type or list of statement types.
- *     Null or undefined if any type could be connected.
+ * @param {string|Array.<string>|null} opt_check Statement type or list of
+ *     statement types.  Null or undefined if any type could be connected.
  */
 Blockly.Block.prototype.setPreviousStatement = function(newBoolean, opt_check) {
   if (this.previousConnection) {
@@ -1081,8 +1083,8 @@ Blockly.Block.prototype.setPreviousStatement = function(newBoolean, opt_check) {
 /**
  * Set whether another block can chain onto the bottom of this block.
  * @param {boolean} newBoolean True if there can be a next statement.
- * @param {Object} opt_check Statement type or list of statement types.
- *     Null or undefined if any type could be connected.
+ * @param {string|Array.<string>|null} opt_check Statement type or list of
+ *     statement types.  Null or undefined if any type could be connected.
  */
 Blockly.Block.prototype.setNextStatement = function(newBoolean, opt_check) {
   if (this.nextConnection) {
@@ -1109,8 +1111,9 @@ Blockly.Block.prototype.setNextStatement = function(newBoolean, opt_check) {
 /**
  * Set whether this block returns a value.
  * @param {boolean} newBoolean True if there is an output.
- * @param {Object} opt_check Returned type or list of returned types.
- *     Null or undefined if any type could be returned (e.g. variable get).
+ * @param {string|Array.<string>|null} opt_check Returned type or list of
+ *     returned types.  Null or undefined if any type could be returned
+ *     (e.g. variable get).
  */
 Blockly.Block.prototype.setOutput = function(newBoolean, opt_check) {
   if (this.outputConnection) {
@@ -1216,14 +1219,16 @@ Blockly.Block.prototype.setCollapsed = function(collapsed) {
     }
   }
 
-  if (collapsed && this.mutator) {
-    this.mutator.setVisible(false);
-  }
-  if (collapsed && this.comment) {
-    this.comment.setVisible(false);
-  }
-  if (collapsed && this.warning) {
-    this.warning.setVisible(false);
+  if (collapsed) {
+    if (this.mutator) {
+      this.mutator.setVisible(false);
+    }
+    if (this.comment) {
+      this.comment.setVisible(false);
+    }
+    if (this.warning) {
+      this.warning.setVisible(false);
+    }
   }
 
   if (renderList.length == 0) {
@@ -1456,6 +1461,9 @@ Blockly.Block.prototype.setWarningText = function(text) {
   if (!Blockly.Warning) {
     throw 'Warnings not supported.';
   }
+  if (this.isInFlyout) {
+    text = null;
+  }
   var changedState = false;
   if (goog.isString(text)) {
     if (!this.warning) {
@@ -1483,5 +1491,8 @@ Blockly.Block.prototype.setWarningText = function(text) {
  * Lays out and reflows a block based on its contents and settings.
  */
 Blockly.Block.prototype.render = function() {
+  if (!this.svg_) {
+    throw 'Uninitialized block cannot be rendered.  Call block.initSvg()';
+  }
   this.svg_.render();
 };

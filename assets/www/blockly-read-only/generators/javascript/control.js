@@ -23,9 +23,7 @@
  */
 'use strict';
 
-goog.provide('Blockly.JavaScript.control');
-
-goog.require('Blockly.JavaScript');
+Blockly.JavaScript.control = {};
 
 Blockly.JavaScript.controls_if = function() {
   // If/elseif/else condition.
@@ -38,11 +36,11 @@ Blockly.JavaScript.controls_if = function() {
     argument = Blockly.JavaScript.valueToCode(this, 'IF' + n,
         Blockly.JavaScript.ORDER_NONE) || 'false';
     branch = Blockly.JavaScript.statementToCode(this, 'DO' + n);
-    code += ' else if (' + argument + ') {\n' + branch + '}';
+    code += ' else if (' + argument + ') {\n' + branch + '}\n';
   }
   if (this.elseCount_) {
     branch = Blockly.JavaScript.statementToCode(this, 'ELSE');
-    code += ' else {\n' + branch + '}';
+    code += ' else {\n' + branch + '}\n';
   }
   return code + '\n';
 };
@@ -171,12 +169,4 @@ Blockly.JavaScript.controls_flow_statements = function() {
       return 'continue;\n';
   }
   throw 'Unknown flow statement.';
-};
-
-Blockly.JavaScript.controls_arduino = function() {
-  var statements_setup = Blockly.JavaScript.statementToCode(this, 'setup');
-  var statements_loop = Blockly.JavaScript.statementToCode(this, 'loop');
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...'
-  return code;
 };

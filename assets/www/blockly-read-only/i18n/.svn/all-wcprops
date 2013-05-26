@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 28
+/svn/!svn/ver/973/trunk/i18n
+END
+common.py
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/svn/!svn/ver/817/trunk/i18n/common.py
+END
+json_to_xliff.py
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/928/trunk/i18n/json_to_xliff.py
+END
+xliff_to_json.py
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/973/trunk/i18n/xliff_to_json.py
+END

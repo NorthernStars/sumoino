@@ -23,14 +23,19 @@
  */
 'use strict';
 
-goog.provide('Blockly.Python.colour');
-
-goog.require('Blockly.Python');
+Blockly.Python.colour = {};
 
 Blockly.Python.colour_picker = function() {
   // Colour picker.
   var code = '\'' + this.getTitleValue('COLOUR') + '\'';
   return [code, Blockly.Python.ORDER_ATOMIC];
+};
+
+Blockly.Python.colour_random = function() {
+  // Generate a random colour.
+  Blockly.Python.definitions_['import_random'] = 'import random';
+  var code = '\'#%06x\' % random.randint(0, 2**24 - 1)';
+  return [code, Blockly.Python.ORDER_FUNCTION_CALL];
 };
 
 Blockly.Python.colour_rgb = function() {

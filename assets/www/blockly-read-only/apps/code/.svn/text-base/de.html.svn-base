@@ -1,4 +1,4 @@
-<html lang="de">
+<html dir="ltr" lang="de">
 <head>
   <meta charset="utf-8">
   <title>Blockly Code</title>
@@ -21,6 +21,9 @@
       catColour: 'Farbe',
       catVariables: 'Variablen',
       catProcedures: 'Funktionen',
+      // Initial variable names.
+      listVariable: 'liste',
+      textVariable: 'text',
       // Misc text.
       blocks: 'Blöcke',
       badXml: 'Fehler beim XML parsen:\n%1\n\nÄnderungen verwerfen?',
@@ -36,18 +39,10 @@
       BlocklyStorage.XML_ERROR = 'Kann Sicherungsdatei nicht laden.\n'+
           'Diese wurde vermutlich mit einer veralteten Version von Blockly erstellt?\nXML: ';
     }
-    var frameSrc = ['de/_messages.js',
-        'common/control.js',
-        'common/logic.js',
-        'common/math.js',
-        'common/text.js',
-        'common/lists.js',
-        'common/colour.js',
-        'common/variables.js',
-        'common/procedures.js'];
+    var frameSrc = ['de_compressed.js'];
   </script>
 </head>
 <body>
-  <script type="text/javascript" src="common.js"></script>
+  <script type="text/javascript" src="code.js"></script>
 </body>
 </html>

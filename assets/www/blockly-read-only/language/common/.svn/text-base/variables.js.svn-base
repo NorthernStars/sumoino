@@ -23,10 +23,6 @@
  */
 'use strict';
 
-goog.provide('Blockly.Language.variables');
-
-goog.require('Blockly.Language');
-
 Blockly.Language.variables_get = {
   // Variable getter.
   category: null,  // Variables are handled specially.
@@ -37,7 +33,7 @@ Blockly.Language.variables_get = {
         .appendTitle(Blockly.LANG_VARIABLES_GET_TITLE)
         .appendTitle(new Blockly.FieldVariable(
         Blockly.LANG_VARIABLES_GET_ITEM), 'VAR');
-    this.setOutput(true, null);
+    this.setOutput(true);
     this.setTooltip(Blockly.LANG_VARIABLES_GET_TOOLTIP);
   },
   getVars: function() {
@@ -57,7 +53,7 @@ Blockly.Language.variables_get = {
     var xmlTitle = goog.dom.createDom('title', null, name);
     xmlTitle.setAttribute('name', 'VAR');
     var xmlBlock = goog.dom.createDom('block', null, xmlTitle);
-    xmlBlock.setAttribute('type', 'variables_set');
+    xmlBlock.setAttribute('type', this.contextMenuType_);
     option.callback = Blockly.ContextMenu.callbackFactory(this, xmlBlock);
     options.push(option);
   }

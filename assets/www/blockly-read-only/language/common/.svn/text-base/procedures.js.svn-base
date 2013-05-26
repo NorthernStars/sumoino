@@ -23,10 +23,6 @@
  */
 'use strict';
 
-goog.provide('Blockly.Language.procedures');
-
-goog.require('Blockly.Language');
-
 Blockly.Language.procedures_defnoreturn = {
   // Define a procedure with no return value.
   category: null,  // Procedures are handled specially.
@@ -117,15 +113,11 @@ Blockly.Language.procedures_defnoreturn = {
         this.workspace, this.arguments_, this.paramIds_);
   },
   dispose: function() {
+    // Dispose of any callers.
     var name = this.getTitleValue('NAME');
-    var editable = this.editable;
-    var workspace = this.workspace;
+    Blockly.Procedures.disposeCallers(name, this.workspace);
     // Call parent's destructor.
     Blockly.Block.prototype.dispose.apply(this, arguments);
-    if (editable) {
-      // Dispose of any callers.
-      Blockly.Procedures.disposeCallers(name, workspace);
-    }
   },
   getProcedureDef: function() {
     // Return the name of the defined procedure,
@@ -426,7 +418,7 @@ Blockly.Language.procedures_callreturn = {
     this.appendDummyInput()
         .appendTitle(Blockly.LANG_PROCEDURES_CALLRETURN_CALL)
         .appendTitle(Blockly.LANG_PROCEDURES_CALLRETURN_PROCEDURE, 'NAME');
-    this.setOutput(true, null);
+    this.setOutput(true);
     this.setTooltip(Blockly.LANG_PROCEDURES_CALLRETURN_TOOLTIP);
     this.arguments_ = [];
     this.quarkConnections_ = null;
@@ -448,7 +440,7 @@ Blockly.Language.procedures_ifreturn = {
   init: function() {
     this.setColour(290);
     this.appendValueInput('CONDITION')
-        .setCheck(Boolean)
+        .setCheck('Boolean')
         .appendTitle(Blockly.LANG_CONTROLS_IF_MSG_IF);
     this.appendValueInput('VALUE')
         .appendTitle(Blockly.LANG_PROCEDURES_DEFRETURN_RETURN);
