@@ -31,16 +31,8 @@ extern "C" {
 
 /* configuration */
 /* movement */
-#define SECOND 1000
-#define SEKUND 1000
-#define MAX_SPEED 100   // 100% of speed
-#define SLOW 10         // 10% of speed
-#define FORWARD 0       // forward direction
-#define EDASI 0
-#define BACKWARD 1      // backward direction
-#define TAGASI 1
 #define MAX_FORWARD 180 // max forward speed
-#define MIDPOINT 94     // servo midpoint, brake
+#define MIDPOINT 90     // servo midpoint, brake
 #define MAX_BACKWARD 0  // max backward speed
 /* pins */
 #define RIGHT_WHEEL 6
@@ -66,6 +58,13 @@ static Servo rightWheel;
 static Servo leftWheel;
 
 /* english version */
+
+/* constants */
+#define SECOND 1000
+#define MAX_SPEED 100   // 100% of speed
+#define SLOW 10         // 10% of speed
+#define FORWARD 0       // forward direction
+#define BACKWARD 1      // backward direction
 
 /* initialization */
 void start();
@@ -122,8 +121,14 @@ int leftMotor(uint8_t, uint8_t);
 }
 /* end of english version */
 
-
 /* estonian version */
+
+/* constants */
+#define SECOND 1000
+#define MAX_KIIRUS 100 	// 100% of speed
+#define AEGLANE 10      // 10% of speed
+#define EDASI 0       	// forward direction
+#define TAGASI 1      	// backward direction
 
 /* sensors */
 /* opponent */
@@ -145,7 +150,37 @@ int leftMotor(uint8_t, uint8_t);
 #define paremMootor(dir, speed_percentage) (rightMotor(dir, speed_percentage))
 #define vasakMootor(dir, speed_percentage) (leftMotor(dir, speed_percentage))
 
-
 /* end of estonian version */
+
+/* german version */
+
+/* constants */
+#define SEKUNDE 1000
+#define MAX_TEMPO 100 	// 100% of speed
+#define LANGSAM 10 			// 10% of speed
+#define VORWAERTS 0 		// forward direction
+#define RUECKWAERTS 1 	// backward direction
+
+/* sensors */
+/* opponent */
+#define GEGNER_RECHTS OPPONENT_RIGHT
+#define GEGNER_LINKS OPPONENT_LEFT
+#define GEGNER_VORNE OPPONENT_FRONT
+/* field */
+#define UNTEN_RECHTS BOTTOM_RIGHT
+#define UNTEN_LINKS BOTTOM_LEFT
+#define UNTEN_MITTE BOTTOM_MIDDLE
+
+/* movement */
+#define warte(time) (delay(time))
+#define stop() (stop())
+#define vorwaerts() (forward())
+#define rueckwaerts() (backward())
+#define rechts() (right())
+#define links() (left())
+#define rechterMotor(dir, speed_percentage) (rightMotor(dir, speed_percentage))
+#define linkerMotor(dir, speed_percentage) (leftMotor(dir, speed_percentage))
+
+/* end of german version */
 
 #endif
