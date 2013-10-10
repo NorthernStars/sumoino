@@ -12,7 +12,7 @@ INSTALLATION
 
 Steps:
 1) copy Sumorobot into your arduino libraries folder and restart arduino
-2) check out the documentation https://github.com/silps/sumoino/raw/master/documentation/Sumorobot2012_student.pdf
+2) check out the documentation https://github.com/silps/sumoino/raw/master/documentation/student.pdf
 3) write some code xD (tip: see examples "Drive_EN", "Avoid_EN", "Opponent_EN")
 
 Commands:
@@ -27,5 +27,9 @@ CREDITS ^-^
 ===========
 
 * EIK Robotics Club
-* Arduino developers
 * NothernStars Robotics Club
+* Arduino developers
+* Phonegap developers
+* Blockly developers
+* Amarino developers
+
