@@ -24,6 +24,7 @@ leftMotor	KEYWORD2
 testOpponent	KEYWORD2
 testLine	KEYWORD2
 testSensors	KEYWORD2
+followLine	KEYWORD2
 
 # estonian version
 viivitus	KEYWORD2

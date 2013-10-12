@@ -91,6 +91,12 @@ int leftMotor(uint8_t, uint8_t);
 #define BOTTOM_MIDDLE READ_BOTTOM(BOTTOM_MIDDLE_SENSOR, LIGHT_INTENSITY_MIDDLE)
 
 /* for testing */
+#define followLine() \
+{ \
+    if (BOTTOM_RIGHT) { right(); } \
+		else if (BOTTOM_LEFT) { left(); } \
+    else forward(); \
+}
 #define testOpponent() \
 { \
     if (OPPONENT_FRONT) forward(); \
@@ -100,9 +106,8 @@ int leftMotor(uint8_t, uint8_t);
 }
 #define testLine() \
 { \
-    if (BOTTOM_RIGHT) { left(); delay(500); } \
-	else if (BOTTOM_LEFT) { right(); delay(500); } \
-    else if (BOTTOM_MIDDLE) { backward(); delay(500); }  \
+    if (BOTTOM_RIGHT) { left(); } \
+		else if (BOTTOM_LEFT) { right(); } \
     else forward(); \
 }
 #define testSensors() \
@@ -110,14 +115,14 @@ int leftMotor(uint8_t, uint8_t);
     Serial.print( "right: " ); \
     Serial.print( analogRead(FRONT_RIGHT_SENSOR) ); \
     Serial.print( " left: " ); \
-    Serial.print( analogRead(FRONT_LEFT_SENSOR) ); \
+    Serial.println( analogRead(FRONT_LEFT_SENSOR) ); \
     Serial.print( " line_left: "); \
     Serial.print( analogRead(BOTTOM_LEFT_SENSOR) ); \
     Serial.print( " line_middle: "); \
     Serial.print( analogRead(BOTTOM_MIDDLE_SENSOR) ); \
     Serial.print( " line_right: "); \
     Serial.println( analogRead(BOTTOM_RIGHT_SENSOR) ); \
-    delay(1000); \
+    Serial.println(); \
 }
 /* end of english version */
 
