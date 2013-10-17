@@ -31,20 +31,19 @@ import java.io.IOException;
 
 public class cordovaExample extends DroidGap
 {
-    @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-        // Set by <content src="index.html" /> in config.xml
-        super.loadUrl(Config.getStartUrl());
-        //super.loadUrl("file:///android_asset/www/index.html")
+  @Override
+  public void onCreate(Bundle savedInstanceState)
+  {
+    super.onCreate(savedInstanceState);
 
-        WebSettings settings = appView.getSettings();
-        settings.setBuiltInZoomControls(true);
-        settings.setSupportZoom(true);
+    // set a splash screen
+    //super.setIntegerProperty( "splashscreen", R.drawable.splashimage );
 
-        CompilerPlugin.context = this;
-        Toast.makeText(this, "Starting app ...", Toast.LENGTH_SHORT).show();
-    }
+    // Set by <content src="index.html" /> in config.xml
+    super.loadUrl(Config.getStartUrl());
+    //super.loadUrl("file:///android_asset/www/index.html")
+
+    CompilerPlugin.context = this;
+    Toast.makeText(this, "Starting Sumoino ...", Toast.LENGTH_SHORT).show();
+  }
 }
-
