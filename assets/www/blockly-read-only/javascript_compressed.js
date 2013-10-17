@@ -87,7 +87,7 @@ Blockly.JavaScript.text_prompt=function(){var a="window.prompt("+Blockly.JavaScr
 Blockly.JavaScript.controls_arduino_main = function() {
   var statements_setup = Blockly.JavaScript.statementToCode(this, 'setup');
   var statements_loop = Blockly.JavaScript.statementToCode(this, 'loop');
-  var code = 'void setup() {\n'+statements_setup+'} void loop() {\n'+statements_loop+'}';
+  var code = 'void setup() {\n'+statements_setup+'}\nvoid loop() {\n'+statements_loop+'}';
   return code;
 };
 
@@ -107,7 +107,7 @@ Blockly.JavaScript.controls_arduino_delay = function() {
 };
 
 Blockly.JavaScript.controls_arduino_opponent = function() {
-  var code = this.getTitleValue('OPPONENT');
+  var code = this.getTitleValue('ENEMY');
   return [code, Blockly.JavaScript.ORDER_ATOMIC];
 };
 

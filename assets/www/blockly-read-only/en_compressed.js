@@ -180,7 +180,7 @@ Blockly.Language.controls_arduino_main = {
     this.appendStatementInput("loop").appendTitle("LOOP");
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
-    this.setTooltip('yo');
+    this.setTooltip("");
   }
 };
 
@@ -191,7 +191,7 @@ Blockly.Language.controls_arduino_motor = {
     this.appendDummyInput().appendTitle('START');
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setTooltip("sdsad");
+    this.setTooltip("");
   }
 };
 
@@ -230,16 +230,16 @@ Blockly.Language.controls_arduino_opponent = {
   init: function() {
     this.setColour(120);
     var dropdown = new Blockly.FieldDropdown(this.OPERATORS);
-    this.appendDummyInput().appendTitle(dropdown, 'OPPONENT');
+    this.appendDummyInput().appendTitle(dropdown, 'ENEMY');
     this.setOutput(true, 'Boolean');
     this.setTooltip("");
   }
 };
 
 Blockly.Language.controls_arduino_opponent.OPERATORS =
-    [['OPPONENT LEFT', 'OPPONENT_LEFT'],
-     ['OPPONENT FRONT', 'OPPONENT_FRONT'],
-     ['OPPONENT RIGHT', 'OPPONENT_RIGHT']];
+    [['ENEMY LEFT', 'OPPONENT_LEFT'],
+     ['ENEMY FRONT', 'OPPONENT_FRONT'],
+     ['ENEMY RIGHT', 'OPPONENT_RIGHT']];
 
 Blockly.Language.controls_arduino_line = {
   helpUrl: 'help',
