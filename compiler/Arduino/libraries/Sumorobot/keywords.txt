@@ -1,0 +1,90 @@
+#######################################
+# Syntax Coloring Map Sumorobt
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+Sumo	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+# english version
+start	KEYWORD2
+stop	KEYWORD2
+forward	KEYWORD2
+right	KEYWORD2
+left	KEYWORD2
+backward	KEYWORD2
+rightMotor	KEYWORD2
+leftMotor	KEYWORD2
+testOpponent	KEYWORD2
+testLine	KEYWORD2
+testSensors	KEYWORD2
+followLine	KEYWORD2
+
+# estonian version
+viivitus	KEYWORD2
+stopp	KEYWORD2
+edasi	KEYWORD2
+tagasi	KEYWORD2
+paremale	KEYWORD2
+vasakule	KEYWORD2
+paremMootor	KEYWORD2
+vasakMootor	KEYWORD2
+
+# german version
+warte	KEYWORD2
+stop	KEYWORD2
+vorwaerts	KEYWORD2
+rueckwaerts	KEYWORD2
+rechts	KEYWORD2
+links	KEYWORD2
+rechterMotor	KEYWORD2
+linkerMotor	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+# english version
+SECOND	LITERAL1
+MAX_SPEED	LITERAL1
+SLOW	LITERAL1
+FORWARD	LITERAL1
+BACKWARD	LITERAL1
+OPPONENT_LEFT	LITERAL1
+OPPONENT_RIGHT	LITERAL1
+OPPONENT_FRONT	LITERAL1
+BOTTOM_LEFT	LITERAL1
+BOTTOM_RIGHT	LITERAL1
+BOTTOM_MIDDLE	LITERAL1
+
+# estonian version
+SEKUND	LITERAL1
+MAX_KIIRUS	LITERAL1
+AEGLANE	LITERAL1
+EDASI	LITERAL1
+TAGASI	LITERAL1
+VASTANE_VASAK	LITERAL1
+VASTANE_PAREM	LITERAL1
+VASTANE_EES	LITERAL1
+ALL_VASAK	LITERAL1
+ALL_PAREM	LITERAL1
+ALL_KESKEL	LITERAL1
+
+# german version
+SEKUNDE	LITERAL1
+MAX_TEMPO	LITERAL1
+LANGSAM	LITERAL1
+VORWAERTS	LITERAL1
+RUECKWAERTS	LITERAL1
+GEGNER_RECHTS	LITERAL1
+GEGNER_RECHTS	LITERAL1
+GEGNER_VORNE	LITERAL1
+UNTEN_LINKS	LITERAL1
+UNTEN_RECHTS	LITERAL1
+UNTEN_MITTE	LITERAL1
