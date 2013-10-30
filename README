@@ -1,10 +1,11 @@
 DESCRIPTION
 ===========
 
-* this sumorobot platform for Arduino is developed for young programmers
-* this library can be used to control 2 servo motors and 2 distance + 3 light sensors
+* this Arduino Sumorobot platform is developed for beginner programmers
+* this Sumorobot uses 2 servo motors and 2 distance + 3 light sensors
 * schematics folder contains the Arduino shield schematics
-* there is no instructions to build a body for the sumorobot
+* frame folder containts the schematics for the frame
+* documentation folder contains the documents for a Sumorobot workshop
 
 
 INSTALLATION
@@ -22,6 +23,12 @@ sudo apt-get update && sudo apt-get install arduino && arduino
 cd /var/tmp && git clone http://github.com/silps/sumoino.git
 sudo cp -R sumoino/Sumorobot /usr/share/arduino/libraries
 
+OTHER LINKS
+===========
+The gallery on google+ https://plus.google.com/photos/118227730440670321584/albums/5777266184562058609
+The guide on instructables http://www.instructables.com/id/Arduino-Sumorobot/
+The poster of the project https://www.sharelatex.com/project/52598a10e0deb8d1340053ea
+The workshop slide https://docs.google.com/presentation/d/194JcJHCedPZimk41OGD4uriet_0rB0_b3bzhDWw4v1Q
 
 CREDITS ^-^
 ===========
