@@ -1,8 +1,8 @@
 /*
 Sumo.cpp - Sumorobot library for Arduino
 
-Copyright (C) 2012 The Estonian Information Technology College Robotics Club
-Copyright (C) 2012 Silver Kuusik <silver.kuusik@gmail.com>
+Author (C) 2012 The Estonian Information Technology College Robotics Club
+Author (C) 2012 Silver Kuusik <silver.kuusik@gmail.com>
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
